@@ -54,6 +54,16 @@ class Game
     if current_side[1].current_pit > 0 || (current_player != current_side && current_side[1].current_pit == -1)
       puts "You ended your turn on a pit with seeds or your seed bank. You can keep going."
       sleep(1)
+
+      if current_side[1].current_pit == -1
+        puts "Pick a number between 0 and 5."
+        chosen_pit = gets.chomp.to_i
+
+        current_side[1].select_pit(chosen_pit)
+      end
+
+      seeds_in_hand = current_side[1].collect_seeds
+      traverse_board(seeds_in_hand, current_player, current_side)
     end
   end
 
