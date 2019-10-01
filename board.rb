@@ -2,7 +2,7 @@ class Board
   attr_reader :current_pit, :pits
 
   def initialize
-    @pits = [4, 4, 4, 4, 4, 4]
+    @pits = [1, 1, 1, 1, 1, 1]
     @current_pit = 0
   end
 

@@ -15,6 +15,8 @@ class Game
     until win?
       players_board = current_player[1]
 
+      puts "\n" + "#{current_player[0].name}'s Turn"
+      puts "Current Board: #{@player_one[1].pits} #{@player_two[1].pits}"
       puts "Pick a number between 0 and 5."
       chosen_pit = gets.chomp.to_i
 
@@ -37,7 +39,12 @@ class Game
       sleep(1)
 
       if current_side[1].current_pit == 5
-        current_player[0].bank_seed if current_player == current_side
+        if current_player == current_side 
+          current_player[0].bank_seed 
+        else 
+          puts "You skip your opponents seed bank."
+          sleep(1)
+        end
           
         current_side = (current_side == @player_one) ? @player_two : @player_one
         current_side[1].select_pit(-1)
@@ -72,7 +79,9 @@ class Game
   end
 
   def win?
-    false
+    player_one_remaining_pits = @player_one[1].pits.inject(:+)
+    player_two_remaining_pits = @player_two[1].pits.inject(:+)
+    player_one_remaining_pits == 0 || player_two_remaining_pits == 0
   end
 end
 
