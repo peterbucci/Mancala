@@ -31,17 +31,16 @@ class Game
   def traverse_board(seeds_in_hand, current_player, current_side)
     until seeds_in_hand == 0
       if current_side[1].current_pit == 5
-        if current_player == current_side
-          current_player[0].bank_seed 
-          seeds_in_hand -= 1
-        end
+        current_player[0].bank_seed if current_player == current_side
+          
         current_side = (current_side == @player_one) ? @player_two : @player_one
         current_side[1].select_pit(-1)
+      else
+        current_side[1].traverse
+        current_side[1].sow_seed
       end
-
-      current_side[1].traverse
-      current_side[1].sow_seed
-      seeds_in_hand -= 1
+      
+      seeds_in_hand -= 1 if current_side[1].current_pit != 5 || current_player == current_side
     end
   end
 
