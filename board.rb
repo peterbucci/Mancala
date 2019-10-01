@@ -1,5 +1,5 @@
 class Board
-  attr_reader :current_pit
+  attr_reader :current_pit, :pits
 
   def initialize
     @pits = [4, 4, 4, 4, 4, 4]
@@ -22,7 +22,7 @@ class Board
 
 
     # Consider removing this eventually.
-    puts "You planted a single seed in pit #{@current_pit}. Current Board: #{@pits}"
+    puts "You planted a single seed in pit #{@current_pit}."
     sleep(1)
   end
 

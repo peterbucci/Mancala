@@ -8,7 +8,7 @@ class Player
     @score += 1
     
     # Consider removing this eventually
-    puts "#{@name} has scored a point. They currently have #{@score} point(s)"
+    puts "#{@name} placed a single seed in their seed bank. They currently have #{@score} seed(s)"
     sleep(1)
   end
 end

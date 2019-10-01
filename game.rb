@@ -31,6 +31,8 @@ class Game
   def traverse_board(seeds_in_hand, current_player, current_side)
     until seeds_in_hand == 0
       # Consider removing this eventually.
+      puts "Current Board: #{@player_one[1].pits} #{@player_two[1].pits}"
+      gets.chomp
       puts "You have #{seeds_in_hand} seed(s) left."
       sleep(1)
 
@@ -44,7 +46,7 @@ class Game
         current_side[1].sow_seed
       end
 
-      seeds_in_hand -= 1 if current_side[1].current_pit != -1 || current_player == current_side
+      seeds_in_hand -= 1 if current_side[1].current_pit != -1 || current_player != current_side
     end
 
     # Consider removing this eventually.
@@ -59,11 +61,13 @@ class Game
         puts "Pick a number between 0 and 5."
         chosen_pit = gets.chomp.to_i
 
-        current_side[1].select_pit(chosen_pit)
+        current_player[1].select_pit(chosen_pit)
+        seeds_in_hand = current_player[1].collect_seeds
+        traverse_board(seeds_in_hand, current_player, current_player)
+      else
+        seeds_in_hand = current_side[1].collect_seeds
+        traverse_board(seeds_in_hand, current_player, current_side)
       end
-
-      seeds_in_hand = current_side[1].collect_seeds
-      traverse_board(seeds_in_hand, current_player, current_side)
     end
   end
 
