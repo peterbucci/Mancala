@@ -20,6 +20,7 @@ class Board
   def sow_seed
     @pits[@current_pit] += 1
 
+
     # Consider removing this eventually.
     puts "You planted a single seed in pit #{@current_pit}. Current Board: #{@pits}"
     sleep(1)
@@ -39,5 +40,9 @@ class Board
 
   def select_pit(pit)
     @current_pit = pit
+  end
+
+  def current_pit_contents
+    @pits[@current_pit]
   end
 end

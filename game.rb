@@ -3,8 +3,8 @@ require_relative "board"
 
 class Game
   def initialize
-    @player_one = [Player.new, Board.new]
-    @player_two = [Player.new, Board.new]
+    @player_one = [Player.new("Player One"), Board.new]
+    @player_two = [Player.new("Player Two"), Board.new]
 
     play
   end
@@ -44,14 +44,14 @@ class Game
         current_side[1].sow_seed
       end
 
-      seeds_in_hand -= 1 if current_side[1].current_pit != 5 || current_player == current_side
+      seeds_in_hand -= 1 if current_side[1].current_pit != -1 || current_player == current_side
     end
 
     # Consider removing this eventually.
     puts "You're now out of seeds"
     sleep(1)
 
-    if current_side[1].current_pit > 0 || (current_player != current_side && current_side[1].current_pit == -1)
+    if current_side[1].current_pit_contents > 1 || (current_player != current_side && current_side[1].current_pit == -1)
       puts "You ended your turn on a pit with seeds or your seed bank. You can keep going."
       sleep(1)
 
