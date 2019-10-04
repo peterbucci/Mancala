@@ -1,8 +1,8 @@
 class Board
   attr_reader :current_pit, :pits
 
-  def initialize
-    @pits = [1, 1, 1, 1, 1, 1]
+  def initialize(n)
+    @pits = Array.new(6, n)
     @current_pit = 0
   end
 

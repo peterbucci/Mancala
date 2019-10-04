@@ -2,9 +2,9 @@ require_relative "player"
 require_relative "board"
 
 class Game
-  def initialize
-    @player_one = [Player.new("Player One"), Board.new]
-    @player_two = [Player.new("Player Two"), Board.new]
+  def initialize(player_one = "Player One", player_two = "Player Two", seeds_per_pit = 4)
+    @player_one = [Player.new(player_one), Board.new(seeds_per_pit)]
+    @player_two = [Player.new(player_two), Board.new(seeds_per_pit)]
 
     play
   end
@@ -26,6 +26,7 @@ class Game
     end
 
     puts "Game Over"
+    count_seed_banks
   end
 
   def valid_move?(user_input)
@@ -103,6 +104,15 @@ class Game
     player_one_remaining_pits = @player_one[1].pits.inject(:+)
     player_two_remaining_pits = @player_two[1].pits.inject(:+)
     player_one_remaining_pits == 0 || player_two_remaining_pits == 0
+  end
+
+  def count_seed_banks
+    if @player_one[0].score == @player_two[0].score
+      puts "The game ended in a tie."
+    else
+      winner = (@player_one[0].score > @player_two[0].score) ? @player_one[0].name : @player_two[0].name
+      puts "#{winner} wins!"
+    end
   end
 end
 
