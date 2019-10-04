@@ -10,7 +10,12 @@ class Player
     @score += 1
     
     # Consider removing this eventually
-    puts "#{@name} placed a single seed in their seed bank. They currently have #{@score} seed(s)"
+    puts "#{@name} placed a single seed in their seed bank and have #{@score} seed(s) banked."
     sleep(1)
+  end
+
+  def get_pos
+    puts "Pick a number between 0 and 5."
+    gets.chomp
   end
 end
